@@ -1,10 +1,7 @@
 // vite.config.js
 export default {
   build: {
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
-      },
-    },
+    target: 'es2015',
+    outDir: 'dist',
   },
 }
