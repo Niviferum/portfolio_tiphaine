@@ -1,9 +1,16 @@
-[[headers]]
-  for = "/*.js"
-  [headers.values]
-    Content-Type = "text/javascript"
+[build]
+  command = "npm run build"
+  publish = "dist"
 
-[[headers]]
-  for = "/assets/*.js"
-  [headers.values]
-    Content-Type = "text/javascript"
+[build.environment]
+  NODE_VERSION = "20"
+
+[dev]
+  command = "npm run dev"
+  port = 5173
+  targetPort = 5173
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
