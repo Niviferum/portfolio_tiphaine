@@ -8,7 +8,6 @@ const Portfolio = () => {
   const [typedText, setTypedText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
   const [isFrench, setIsFrench] = useState(true);
-  const marqueeRef = useRef(null);
   
   // Textes à écrire progressivement en français et en anglais
   const frenchText = "Mon portfolio sera bientôt disponible en ligne";
@@ -89,7 +88,7 @@ const Portfolio = () => {
         window.open('https://www.instagram.com/Nephii_277', '_blank');
         break;
       case 'linkedin':
-        window.open('https://www.linkedin.com/in/tiphaine-derrey', '_blank');
+        window.open('https://www.linkedin.com/in/tiphaine-derrey-75602b234/', '_blank');
         break;
       case 'email':
         window.open('mailto:tiphaine.derr@gmail.com', '_blank');
@@ -97,6 +96,20 @@ const Portfolio = () => {
       default:
         break;
     }
+  };
+
+  // Créer une bande défilante infinie
+  const createMarqueeContent = () => {
+    // Répéter les compétences pour assurer que la bande soit suffisamment longue
+    const repeatedSkills = [...skills, ...skills, ...skills, ...skills]; 
+    
+    return (
+      <div className="marquee-track">
+        {repeatedSkills.map((skill, index) => (
+          <span key={index}>{skill} - </span>
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -113,33 +126,24 @@ const Portfolio = () => {
       
       {/* Contenu principal */}
       <div className="content">
-        {/* Bande défilante en haut */}
+        {/* Bande défilante en haut - Version infinie */}
         <div className="marquee-container">
-          <div className="marquee" ref={marqueeRef}>
-            {[...skills, ...skills].map((skill, index) => (
-              <span key={index}>{skill} - </span>
-            ))}
-          </div>
+          {createMarqueeContent()}
         </div>
         
-        {/* Section centrale avec titre et bouton */}
+        {/* Contenu principal avec titre et bouton */}
         <div className="main-content">
-          {/* Titre en haut à droite */}
+          {/* Titre à droite */}
           <div className="title">
             <h1>
               TIPHAINE<br />DERREY
             </h1>
           </div>
           
-          {/* Section avec flèches et bouton download en bas */}
+          {/* Section centrale */}
           <div className="center-section">
-            {/* Flèches animées */}
+            {/* Flèche animée */}
             <div className="arrows">
-              <div className="arrow">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </div>
               <div className="arrow">
                 <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -147,7 +151,7 @@ const Portfolio = () => {
               </div>
             </div>
             
-            {/* Bouton de téléchargement avec lien href */}
+            {/* Bouton de téléchargement */}
             <a 
               href="./portfolio_2025_Tiphaine_Derrey.pdf" 
               download
@@ -169,91 +173,88 @@ const Portfolio = () => {
           </div>
         </div>
         
-        {/* Pied de page avec icônes et crédits */}
+        {/* Pied de page avec réseaux sociaux et crédits */}
         <div className="footer">
-          {/* Icônes des réseaux sociaux */}
-          <div className="social-icons">
-            {/* Instagram */}
-            <button 
-              className="social-btn"
-              onClick={() => handleSocialClick('instagram')}
-              onMouseEnter={() => setHoveredButton('instagram')}
-              onMouseLeave={() => setHoveredButton(null)}
-              style={{
-                color: hoveredButton === 'instagram' ? '#60a5a1' : 'white'
-              }}
-            >
-              <svg 
-                width="32" 
-                height="32" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
+          {/* Réseaux sociaux sur la droite */}
+          <div className="bottom-content">
+            <div className="social-icons-vertical">
+              {/* Instagram */}
+              <button 
+                className="social-btn"
+                onClick={() => handleSocialClick('instagram')}
+                onMouseEnter={() => setHoveredButton('instagram')}
+                onMouseLeave={() => setHoveredButton(null)}
+                style={{
+                  color: hoveredButton === 'instagram' ? '#60a5a1' : 'white'
+                }}
               >
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-            </button>
+                <svg 
+                  width="32" 
+                  height="32" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </button>
+              
+              {/* Email */}
+              <button 
+                className="social-btn"
+                onClick={() => handleSocialClick('email')}
+                onMouseEnter={() => setHoveredButton('email')}
+                onMouseLeave={() => setHoveredButton(null)}
+                style={{
+                  color: hoveredButton === 'email' ? '#60a5a1' : 'white'
+                }}
+              >
+                <svg 
+                  width="32" 
+                  height="32" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                >
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </button>
+              
+              {/* LinkedIn */}
+              <button 
+                className="social-btn"
+                onClick={() => handleSocialClick('linkedin')}
+                onMouseEnter={() => setHoveredButton('linkedin')}
+                onMouseLeave={() => setHoveredButton(null)}
+                style={{
+                  color: hoveredButton === 'linkedin' ? '#60a5a1' : 'white'
+                }}
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="32" 
+                  height="32" 
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                </svg>
+              </button>
+            </div>
             
-            {/* Email */}
-            <button 
-              className="social-btn"
-              onClick={() => handleSocialClick('email')}
-              onMouseEnter={() => setHoveredButton('email')}
-              onMouseLeave={() => setHoveredButton(null)}
-              style={{
-                color: hoveredButton === 'email' ? '#60a5a1' : 'white'
-              }}
-            >
-              <svg 
-                width="32" 
-                height="32" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
-              </svg>
-            </button>
-            
-            {/* LinkedIn */}
-            <button 
-              className="social-btn"
-              onClick={() => handleSocialClick('linkedin')}
-              onMouseEnter={() => setHoveredButton('linkedin')}
-              onMouseLeave={() => setHoveredButton(null)}
-              style={{
-                color: hoveredButton === 'linkedin' ? '#60a5a1' : 'white'
-              }}
-            >
-              <svg 
-                width="32" 
-                height="32" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
-              </svg>
-            </button>
-          </div>
-          
-          {/* Crédits */}
-          <div className="credits">
-            <p>Crédits - ©Tiphaine Derrey 2025</p>
+            {/* Crédits */}
+            <div className="credits">
+              <p>Crédits - ©Tiphaine Derrey 2025</p>
+            </div>
           </div>
         </div>
       </div>
