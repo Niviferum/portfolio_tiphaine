@@ -8,13 +8,19 @@
   padding: 0;
 }
 
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Satoshi', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
   background-color: #1E1117;
   color: white;
 }
@@ -23,7 +29,7 @@ body {
 .container {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
 }
 
@@ -114,7 +120,7 @@ body {
 }
 
 .title h1 {
-  font-size: 6.5rem;
+  font-size: clamp(3rem, 8vw, 6.5rem); /* Taille responsive */
   font-weight: 900; /* Black weight comme demandé */
   line-height: 1;
 }
@@ -144,7 +150,7 @@ body {
 
 /* Bouton de téléchargement */
 .download-btn {
-  font-size: 1.75rem;
+  font-size: clamp(1.25rem, 5vw, 1.75rem); /* Taille responsive */
   font-weight: 500;
   padding: 0.5rem 1.5rem;
   background: transparent;
@@ -154,6 +160,7 @@ body {
   transition: color 0.3s ease;
   display: inline-block;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .download-btn:hover {
@@ -162,11 +169,12 @@ body {
 
 /* Texte qui s'écrit */
 .typing-text {
-  font-size: 1.25rem;
+  font-size: clamp(1rem, 3vw, 1.25rem); /* Taille responsive */
   text-align: center;
-  max-width: 600px;
+  max-width: 90%;
+  width: 600px;
   margin: 0 auto;
-  min-height: 1.5em; /* Assure une hauteur minimale pour éviter les sauts */
+  min-height: 1.5em;
 }
 
 .cursor-blink {
@@ -207,7 +215,7 @@ body {
 }
 
 .credits {
-  font-size: 1.25rem;
+  font-size: clamp(0.875rem, 2vw, 1.25rem); /* Taille responsive */
   font-weight: 400;
 }
 
@@ -229,27 +237,216 @@ body {
   100% { opacity: 1; }
 }
 
-/* Adaptations pour mobile */
-@media (max-width: 768px) {
+/* Adaptations pour tablettes */
+@media screen and (max-width: 1024px) {
   .content {
-    padding: 30px; /* Réduire les marges sur mobile */
+    padding: 40px;
   }
   
-  .title h1 {
-    font-size: 4rem;
-  }
-  
-  .download-btn {
+  .marquee-track span {
     font-size: 1.25rem;
   }
+}
+
+/* Adaptations pour mobiles */
+@media screen and (max-width: 768px) {
+  .content {
+    padding: 20px;
+  }
   
-  .typing-text {
+  .marquee-track span {
     font-size: 1rem;
   }
   
   .social-icons-vertical {
     flex-direction: row;
-    gap: 1rem;
+    gap: 1.5rem;
     margin-bottom: 1rem;
   }
+  
+  .bottom-content {
+    width: 100%;
+    align-items: center;
+  }
+  
+  .footer {
+    justify-content: center;
+  }
+}
+
+/* Adaptations pour petits mobiles */
+@media screen and (max-width: 480px) {
+  .content {
+    padding: 15px;
+    justify-content: flex-start;
+  }
+  
+  .title {
+    margin-top: 20px;
+  }
+  
+  .title h1 {
+    font-size: 2.5rem;
+  }
+  
+  .marquee-container {
+    height: 30px;
+  }
+  
+  .marquee-track span {
+    font-size: 0.875rem;
+  }
+  
+  .download-btn {
+    font-size: 1.1rem;
+    padding: 0.4rem 1rem;
+  }
+  
+  .typing-text {
+    font-size: 0.9rem;
+    max-width: 95%;
+  }
+  
+  .center-section {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  
+  .arrow svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .social-btn svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .credits {
+    font-size: 0.75rem;
+  }
+  
+  /* Ajustement pour s'assurer que le contenu soit visible */
+  .main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+/* Support pour les écrans en orientation paysage sur mobile */
+@media screen and (max-height: 480px) and (orientation: landscape) {
+  .content {
+    padding: 15px;
+  }
+  
+  .title h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .center-section {
+    margin-bottom: 0.5rem;
+  }
+  
+  .download-btn {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .typing-text {
+    font-size: 0.8rem;
+  }
+  
+  .social-icons-vertical {
+    flex-direction: row;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .marquee-container {
+    height: 25px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .arrows {
+    height: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Ajoutez ou modifiez ces règles dans votre fichier index.css */
+
+/* Réinitialisation complète pour tout l'écran */
+html, body, #root, .container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* S'assurer que #root prend tout l'espace disponible */
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style pour le conteneur principal */
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Arrière-plan avec image */
+.full-page-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Ajustements pour l'image de fond */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 0.5s ease;
+  object-fit: cover; /* Très important pour couvrir tout l'espace */
+}
+
+/* Overlay amélioré */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(50, 32, 41);
+  opacity: 0.5;
+}
+
+/* Style pour le contenu par-dessus l'image */
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 70px;
+  box-sizing: border-box;
 }
