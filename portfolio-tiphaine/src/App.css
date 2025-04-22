@@ -381,31 +381,24 @@ body {
   }
 }
 
-/* Ajoutez ou modifiez ces règles dans votre fichier index.css */
 
-/* Réinitialisation complète pour tout l'écran */
+
 html, body, #root, .container {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh; /* Utilisation de vh pour s'assurer de prendre toute la hauteur visible */
   overflow: hidden;
 }
 
-/* S'assurer que #root prend tout l'espace disponible */
-#root {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Style pour le conteneur principal */
+/* Conteneur principal */
 .container {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-/* Arrière-plan avec image */
+/* Arrière-plan à plein écran */
 .full-page-bg {
   position: absolute;
   top: 0;
@@ -415,20 +408,19 @@ html, body, #root, .container {
   z-index: 0;
 }
 
-/* Ajustements pour l'image de fond */
+/* Style spécifique pour l'image d'arrière-plan */
 .background-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
+  background-size: cover; /* L'image couvre tout le conteneur tout en préservant son ratio */
+  background-position: center center; /* Centre l'image */
   transition: opacity 0.5s ease;
-  object-fit: cover; /* Très important pour couvrir tout l'espace */
 }
 
-/* Overlay amélioré */
+/* Overlay par-dessus l'image */
 .overlay {
   position: absolute;
   top: 0;
@@ -439,7 +431,7 @@ html, body, #root, .container {
   opacity: 0.5;
 }
 
-/* Style pour le contenu par-dessus l'image */
+/* Contenu */
 .content {
   position: relative;
   z-index: 1;
